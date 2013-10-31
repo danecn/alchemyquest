@@ -41,6 +41,12 @@ window.addEventListener("load", function() {
         return (window.navigator.standalone != false);
     });
 
+    // extend yepnope with preloading
+    yepnope.addPrefix("preload", function(resource) {
+        resource.noexec = true;
+        return resource;
+    });
+
     Modernizr.load([
         {
             //main files to load
@@ -49,6 +55,14 @@ window.addEventListener("load", function() {
                 "scripts/screen.main-menu.js",
                 "scripts/board.js"
             ]
+        },
+        {
+            test : Modernizr.webworkers,
+            yep : [
+                "scripts/board.worker-interface.js",
+                "preload!scripts/board.worker.js"
+            ],
+            nope : "scripts/board.js"
         },
         {
             test : Modernizr.standalone,
