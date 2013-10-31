@@ -4,7 +4,7 @@ alchemy.board = (function() {
         messageCount,
         callbacks;
 
-        
+
     function post(command, data, callback) {
         callbacks[messageCount] = callback;
         worker.postMessage({
@@ -14,12 +14,12 @@ alchemy.board = (function() {
         });
         messageCount++;
     }
-    
+
     function messageHandler(jQueryEvent) {
         event = jQueryEvent.originalEvent;
 
         // uncomment to log worker messages
-        // console.log("Received: ", event.data);
+         console.log("Received: ", event.data);
         if(event){
             var message = event.data;
 
@@ -38,7 +38,7 @@ alchemy.board = (function() {
         cols = settings.cols;
         messageCount = 0;
         callbacks = [];
-        worker = new Worker("assets/scripts/board.worker.js");
+        worker = new Worker("scripts/board.worker.js");
         $(worker).bind("message", messageHandler);
         var data = {
             settings : settings,
@@ -47,7 +47,7 @@ alchemy.board = (function() {
         post("initialize", data, callback);
     }
 
-   
+
     function swap(x1, y1, x2, y2, callback) {
         post("swap", {
             x1 : x1,
@@ -56,7 +56,7 @@ alchemy.board = (function() {
             y2 : y2
         }, callback);
     }
-    
+
     // creates a copy of the item board
     function getBoard() {
         var copy = [],
@@ -74,7 +74,7 @@ alchemy.board = (function() {
             return items[x][y];
         }
     }
-    
+
     function print() {
         var str = "";
         for (var y = 0; y < rows; y++) {
@@ -85,7 +85,7 @@ alchemy.board = (function() {
         }
         console.log(str);
     }
-    
+
     return {
         initialize : initialize,
         swap : swap,

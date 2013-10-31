@@ -9,8 +9,9 @@ addEventListener("message", function(event) {
 
     switch (message.command) {
         case "initialize" :
-            alchemy.settings = message.data.settings;
-            board.initialize(message.data.startItems, callback);
+            var data = message.data;
+            alchemy.settings = data.settings;
+            board.initialize(data.startItems, callback);
             break;
         case "swap" :
             board.swap(

@@ -33,10 +33,18 @@ var alchemy = {
             baseLevelExp : 1.1
         },
         difficulty: 'normal'
-    }
+    },
+    images : {}
 };
 window.addEventListener("load", function() {
 
+    // determine item size
+    var itemProto = document.getElementById("item-proto"),
+        rect = itemProto.getBoundingClientRect();
+
+    alchemy.settings.itemSize = rect.width;
+
+    // Verify if browser enable standalone mode
     Modernizr.addTest("standalone", function() {
         return (window.navigator.standalone != false);
     });
@@ -47,22 +55,42 @@ window.addEventListener("load", function() {
         return resource;
     });
 
+    var numPreload = 0,
+        numLoaded = 0;
+
+    yepnope.addPrefix("loader", function(resource) {
+//         console.log("Loading: " + resource.url)
+
+        var isImage = /.+\.(jpg|png|gif)$/i.test(resource.url);
+        resource.noexec = isImage;
+
+        numPreload++;
+        resource.autoCallback = function(e) {
+            // console.log("Finished loading: " + resource.url)
+            numLoaded++;
+            if (isImage) {
+                var image = new Image();
+                image.src = resource.url;
+                alchemy.images[resource.url] = image;
+            }
+        };
+        return resource;
+    });
+
+    function getLoadProgress() {
+        if (numPreload > 0) {
+            return numLoaded / numPreload;
+        } else {
+            return 0;
+        }
+    }
+
     Modernizr.load([
         {
             //main files to load
             load : [
-                "scripts/game.js",
-                "scripts/screen.main-menu.js",
-                "scripts/board.js"
+                "scripts/game.js"
             ]
-        },
-        {
-            test : Modernizr.webworkers,
-            yep : [
-                "scripts/board.worker-interface.js",
-                "preload!scripts/board.worker.js"
-            ],
-            nope : "scripts/board.js"
         },
         {
             test : Modernizr.standalone,
@@ -71,12 +99,37 @@ window.addEventListener("load", function() {
             complete : function() {
                 alchemy.game.setup();
                 if (Modernizr.standalone) {
-                    alchemy.game.showScreen("splash-screen");
+                    alchemy.game.showScreen("splash-screen", getLoadProgress);
                 } else {
                     alchemy.game.showScreen("install-screen");
                 }
             }
+        },
+        {
+            test : Modernizr.canvas,
+            yep : "loader!scripts/display.canvas.js",
+            nope : "loader!scripts/display.dom.js"
+        },
+        {
+            test : Modernizr.webworkers,
+            yep : [
+                "loader!scripts/board.worker-interface.js",
+                "preload!scripts/board.worker.js"
+            ],
+            nope : "loader!scripts/board.js"
+        },
+        {
+            load : [
+                "loader!scripts/screen.main-menu.js",
+                "loader!scripts/screen.game.js",
+                "loader!images/sprites/items"
+                    + alchemy.settings.itemSize + ".png"
+            ]
         }
+    ]);
+
+    Modernizr.load([
+
     ]);
 
 

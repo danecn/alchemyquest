@@ -37,12 +37,19 @@
     <script src="scripts/loader.js"></script>
 </head>
 <body>
-
     <div id="game">
+        <div class="background"></div>
+
+        <!--  SPLASH SCREEN  -->
         <div class="screen" id="splash-screen">
             <h1 class="logo">Alchemy<br/>Quest</h1>
+            <div class="progress">
+                <div class="indicator"></div>
+            </div>
             <span class="continue">Click to continue</span>
         </div>
+
+        <!--  INSTALL SCREEN  -->
         <div class="screen" id="install-screen">
             <h1 class="logo">Alchemy<br/>Quest</h1>
             <div>
@@ -54,6 +61,8 @@
                </span>
             </div>
         </div>
+
+        <!--  MAIN MENU SCREEN  -->
         <div class="screen" id="main-menu">
             <h2 class="logo">Alchemy<br/>Quest</h2>
             <ul class="menu">
@@ -63,8 +72,16 @@
                 <li><button name="about">About</button>
             </ul>
         </div>
-        <div class="screen" id="game-screen"></div>
+
+        <!--  GAME SCREEN  -->
+        <div class="screen" id="game-screen">
+            <div class="game-board item-size"></div>
+        </div>
+
+        <!--  HIGH SCORE SCREEN  -->
         <div class="screen" id="high-scores"></div>
+
+        <div id="item-proto" class="item-size"></div>
     </div>
 </body>
 </html>

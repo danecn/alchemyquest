@@ -17,7 +17,7 @@ alchemy.board = (function() {
             return items[x][y];
         }
     }
-    
+
     function fillBoard() {
         var x, y,
             type;
@@ -27,8 +27,8 @@ alchemy.board = (function() {
             for (y = 0; y < rows; y++) {
                 type = randomItem();
                 while ((type === getItem(x-1, y) &&
-                        type === getItem(x-2, y)) ||
-                       (type === getItem(x, y-1) &&
+                    type === getItem(x-2, y)) ||
+                    (type === getItem(x, y-1) &&
                         type === getItem(x, y-2))) {
                     type = randomItem();
                 }
@@ -40,7 +40,7 @@ alchemy.board = (function() {
             fillBoard();
         }
     }
-    
+
     // returns the number items in the longest chain
     // that includes (x,y)
     function checkChain(x, y) {
@@ -86,8 +86,8 @@ alchemy.board = (function() {
         items[x1][y1] = type2;
         items[x2][y2] = type1;
 
-        chain = (checkChain(x2, y2) > 2 
-              || checkChain(x1, y1) > 2);
+        chain = (checkChain(x2, y2) > 2
+            || checkChain(x1, y1) > 2);
 
         // swap back
         items[x1][y1] = type1;
@@ -102,7 +102,7 @@ alchemy.board = (function() {
             dy = Math.abs(y1 - y2);
         return (dx + dy === 1);
     }
-    
+
     // returns a two-dimensional map of chain-lengths
     function getChains() {
         var x, y,
@@ -116,7 +116,7 @@ alchemy.board = (function() {
         }
         return chains;
     }
-    
+
     // creates a copy of the item board
     function getBoard() {
         var copy = [],
@@ -139,9 +139,9 @@ alchemy.board = (function() {
         }
         return false;
     }
-    
+
     function check(events) {
-        var chains = getChains(), 
+        var chains = getChains(),
             hadChains = false, score = 0,
             removed = [], moved = [], gaps = [];
 
@@ -155,10 +155,10 @@ alchemy.board = (function() {
                         x : x, y : y,
                         type : getItem(x, y)
                     });
-                    
+
                     // add points to score
                     score += baseScore
-                           * Math.pow(2, (chains[x][y] - 3));
+                        * Math.pow(2, (chains[x][y] - 3));
 
                 } else if (gaps[x] > 0) {
                     moved.push({
@@ -169,7 +169,7 @@ alchemy.board = (function() {
                     items[x][y + gaps[x]] = getItem(x, y);
                 }
             }
-            
+
             // fill from top
             for (y = 0; y < gaps[x]; y++) {
                 items[x][y] = randomItem();
@@ -180,7 +180,7 @@ alchemy.board = (function() {
                 });
             }
         }
-        
+
         events = events || [];
 
         if (hadChains) {
@@ -194,7 +194,7 @@ alchemy.board = (function() {
                 type : "move",
                 data : moved
             });
-            
+
             // refill if no more moves
             if (!hasMoves()) {
                 fillBoard();
@@ -210,14 +210,14 @@ alchemy.board = (function() {
         }
 
     }
-    
+
     // returns true if (x,y) is a valid position and if 
     // the item at (x,y) can be swapped with a neighbor
     function canItemMove(x, y) {
         return ((x > 0 && canSwap(x, y, x-1 , y)) ||
-                (x < cols-1 && canSwap(x, y, x+1 , y)) ||
-                (y > 0 && canSwap(x, y, x , y-1)) ||
-                (y < rows-1 && canSwap(x, y, x , y+1)));
+            (x < cols-1 && canSwap(x, y, x+1 , y)) ||
+            (y > 0 && canSwap(x, y, x , y-1)) ||
+            (y < rows-1 && canSwap(x, y, x , y+1)));
     }
 
     // if possible, swaps (x1,y1) and (x2,y2) and
