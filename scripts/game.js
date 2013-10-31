@@ -8,7 +8,6 @@ alchemy.game = (function() {
         if ($activeScreen) {
             $activeScreen.removeClass("active");
         }
-        console.log(screenId);
         // run the screen module
         alchemy.screens[screenId].run();
         // display the screen html

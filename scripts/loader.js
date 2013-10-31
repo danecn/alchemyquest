@@ -4,7 +4,36 @@
 
 //Define Game namespace
 var alchemy = {
-    screens : {}
+    screens : {},
+    settings : {
+        rows : 8,
+        cols : 8,
+        easy : {
+            baseScore : 100,
+            numItemTypes : 7,
+            baseTimerBoost: 30,
+            baseLevelTimer : 120000,
+            baseLevelScore : 1500,
+            baseLevelExp : 1.05
+        },
+        normal : {
+            baseScore : 100,
+            numItemTypes : 8,
+            baseTimerBoost: 20,
+            baseLevelTimer : 90000,
+            baseLevelScore : 1500,
+            baseLevelExp : 1.075
+        },
+        hard : {
+            baseScore : 100,
+            numItemTypes : 9,
+            baseTimerBoost: 10,
+            baseLevelTimer : 60000,
+            baseLevelScore : 1500,
+            baseLevelExp : 1.1
+        },
+        difficulty: 'normal'
+    }
 };
 window.addEventListener("load", function() {
 
@@ -17,7 +46,8 @@ window.addEventListener("load", function() {
             //main files to load
             load : [
                 "scripts/game.js",
-                "scripts/screen.main-menu.js"
+                "scripts/screen.main-menu.js",
+                "scripts/board.js"
             ]
         },
         {
