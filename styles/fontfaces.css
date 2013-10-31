@@ -1,14 +1,14 @@
 @font-face {
-    font-family: "Slackey";
+    font-family: "Lithos Regular";
     font-weight: normal;
     font-style: normal;
-    src: url("../fonts/slackey.woff") format("woff"),
-         url("../fonts/slackey.ttf") format("truetype");
+    src: url("../fonts/LithosPro-Regular.woff") format("woff"),
+    url("../fonts/LithosPro-Regular.ttf") format("truetype");
 }
 @font-face {
-    font-family: "Geo";
+    font-family: "Lithos Black";
     font-weight: normal;
     font-style: normal;
-    src: url("../fonts/geo.woff") format("woff"),
-         url("../fonts/geo.ttf") format("truetype");
+    src: url("../fonts/LithosPro-Black.woff") format("woff"),
+    url("../fonts/LithosPro-Black.ttf") format("truetype");
 }

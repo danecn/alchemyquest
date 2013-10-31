@@ -8,12 +8,31 @@ alchemy.game = (function() {
         if ($activeScreen) {
             $activeScreen.removeClass("active");
         }
+        console.log(screenId);
+        // run the screen module
+        alchemy.screens[screenId].run();
         // display the screen html
         $screen.addClass("active");
     }
 
+    function setup() {
+        // disable native touchmove behavior to
+        // prevent overscroll
+        $(document).bind("touchmove", function(event) {
+            event.preventDefault();
+        });
+        // hide the address bar on Android devices
+        if (/Android/.test(navigator.userAgent)) {
+            $("html").css('height', '200%');
+            setTimeout(function() {
+                window.scrollTo(0, 1);
+            }, 0);
+        }
+    }
+
     // expose public methods
     return {
+        setup : setup,
         showScreen : showScreen
     };
 })();

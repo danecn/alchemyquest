@@ -2,24 +2,71 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Alchemy Quest</title>
 
     <!-- STYLE -->
     <link rel="stylesheet" href="styles/fontfaces.css" />
     <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/mobile.css"
+          media="screen and (max-device-width: 768px) and (orientation: portrait),
+                 screen and (max-device-width: 1024px) and (orientation: landscape)"/>
+
+    <link rel="shortcut icon" href="images/icons/alchemy-quest.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/icons/ios-icon.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/ios-icon-ipad.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/ios-icon-iphone4.png"/>
+
+    <link rel="apple-touch-startup-image"
+          href="images/splashscreen/ios-startup-748x1024.png"
+          media="screen and (min-device-width: 768px) and (orientation:landscape)" />
+    <link rel="apple-touch-startup-image"
+          href="images/splashscreen/ios-startup-768x1004.png"
+          media="screen and (min-device-width: 768px) and (orientation:portrait)" />
+    <link rel="apple-touch-startup-image"
+          href="images/splashscreen/ios-startup-320x460.png"
+          media="screen and (max-device-width:320px)"/>
+
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black" />
 
     <!-- SCRIPTS -->
+    <script src="scripts/lib/jquery.min.js"></script>
     <script src="scripts/lib/modernizr.js"></script>
     <script src="scripts/loader.js"></script>
 </head>
 <body>
+
     <div id="game">
         <div class="screen" id="splash-screen">
-            <h1 class="logo">Alchemy <br/>Quest</h1>
+            <h1 class="logo">Alchemy<br/>Quest</h1>
             <span class="continue">Click to continue</span>
         </div>
-
-        <div class="screen" id="main-menu"></div>
+        <div class="screen" id="install-screen">
+            <h1 class="logo">Alchemy<br/>Quest</h1>
+            <div>
+                <span>
+                    Wait <b id="timer">10</b> <i id="metrics">seconds</i>
+               </span>
+               <span>
+                    or
+               </span>
+                <span>
+                    Click the <img src="images/icons/install-icon.png" alt="Install icon">
+                    button to install the game to your home screen
+               </span>
+            </div>
+        </div>
+        <div class="screen" id="main-menu">
+            <h2 class="logo">Alchemy<br/>Quest</h2>
+            <ul class="menu">
+                <li><button name="game-screen">Play</button>
+                <li><button name="hiscore">Highscore</button>
+                <li><button name="settings">Settings</button>
+                <li><button name="about">About</button>
+            </ul>
+        </div>
         <div class="screen" id="game-screen"></div>
         <div class="screen" id="high-scores"></div>
     </div>

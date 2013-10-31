@@ -3,24 +3,37 @@
  */
 
 //Define Game namespace
-var alchemy = {};
-
+var alchemy = {
+    screens : {}
+};
 window.addEventListener("load", function() {
 
-Modernizr.load([
-    {
-        test : Modernizr.touch,
-        yep : "scripts/lib/jquery.mobile.min.js",
-        nope : "scripts/lib/jquery.min.js"
-    },
-    {
-        load : [
-            "scripts/game.js"
-        ],
-        complete : function() {
-            alchemy.game.showScreen("splash-screen");
+    Modernizr.addTest("standalone", function() {
+        return (window.navigator.standalone != false);
+    });
+
+    Modernizr.load([
+        {
+            //main files to load
+            load : [
+                "scripts/game.js",
+                "scripts/screen.main-menu.js"
+            ]
+        },
+        {
+            test : Modernizr.standalone,
+            yep : "scripts/screen.splash.js",
+            nope : "scripts/screen.install.js",
+            complete : function() {
+                alchemy.game.setup();
+                if (Modernizr.standalone) {
+                    alchemy.game.showScreen("splash-screen");
+                } else {
+                    alchemy.game.showScreen("install-screen");
+                }
+            }
         }
-    }
-]);
+    ]);
+
 
 }, false);
