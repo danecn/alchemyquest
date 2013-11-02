@@ -2,30 +2,32 @@ alchemy.screens["hiscore"] = (function() {
     var game = alchemy.game,
         storage = alchemy.storage,
         numScores = 10,
-        firstRun = true;
+        firstRun = true,
+        difficultyDisplayed;
 
     function setup() {
         $("#hiscore footer button[name=back]").bind("click", function(e) {
             game.showScreen("main-menu");
         });
+        selectDifficulty();
     }
 
-    function run(score) {
+    function run(score, difficulty) {
         if (firstRun) {
             setup();
             firstRun = false;
         }
         populateList();
         if (typeof score != "undefined") {
-            enterScore(score);
+            enterScore(score, difficulty);
         }
     }
 
-    function getScores() {
-        return storage.get("hiscore") || [];
+    function getScores(difficulty) {
+        return storage.get("hiscore-"+difficulty) || [];
     }
 
-    function enterScore(score) {
+    function enterScore(score, difficulty) {
         var scores = getScores(),
             name, i, entry;
         for (i=0;i<=scores.length;i++) {
@@ -36,7 +38,7 @@ alchemy.screens["hiscore"] = (function() {
                     score : score
                 };
                 scores.splice(i, 0, entry);
-                storage.set("hiscore", scores.slice(0, numScores));
+                storage.set("hiscore-"+difficulty, scores.slice(0, numScores));
                 populateList();
                 return;
             }
@@ -44,7 +46,7 @@ alchemy.screens["hiscore"] = (function() {
     }
 
     function populateList() {
-        var scores = getScores(),
+        var scores = getScores(difficultyDisplayed),
             $list = $("#hiscore ol.score-list"),
             item, nameEl, scoreEl, i;
 
@@ -59,18 +61,31 @@ alchemy.screens["hiscore"] = (function() {
         $list.html("");
 
         for (i=0;i<scores.length;i++) {
-            item = document.createElement("li");
+                item = document.createElement("li");
 
-            nameEl = document.createElement("span");
-            $(nameEl).html(scores[i].name);
+                nameEl = document.createElement("span");
+                $(nameEl).html(scores[i].name);
 
-            scoreEl = document.createElement("span");
-            $(scoreEl).html(scores[i].score);
+                scoreEl = document.createElement("span");
+                $(scoreEl).html(scores[i].score);
 
-            $(item).append(nameEl);
-            $(item).append(scoreEl);
-            $($list).append(item);
+                $(item).append(nameEl);
+                $(item).append(scoreEl);
+                $($list).append(item);
         }
+    }
+
+    function selectDifficulty(){
+        difficultyDisplayed = "normal";
+        $("#hiscore .difficulty button[name=easy]")
+            .add("#hiscore .difficulty button[name=normal]")
+            .add("#hiscore .difficulty button[name=hard]")
+            .bind("click", function(e) {
+                $(".mode").removeClass('active');
+                $(this).addClass('active');
+                difficultyDisplayed = $(this).attr("name");
+                populateList()
+        });
     }
 
 

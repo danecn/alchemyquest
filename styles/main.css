@@ -439,7 +439,46 @@ ul.menu li button:active {
     margin-top : 0.6em;
     font-size : 1.2em;
 }
+#hiscore .difficulty {
+    font-size : 0.7em;
+    list-style-type: none;
+    padding-left: 2em;
+    margin: 0;
+}
+#hiscore li {
+    float: left;
+}
+#hiscore .difficulty button {
+    font-family: "Lithos Regular";
+    margin-left: 0.25em;
+    padding: 0.2em 0.75em 0 0.75em;;
+    font-size: 0.5em;
+    height: 1.4em;
+    cursor: pointer;
 
+    color : rgb(200, 200, 100);
+    background : rgb(41, 91, 117);
+    border : 1px solid rgb(200, 200, 100);
+    border-radius : 0.2em;
+}
+#hiscore .difficulty .active.easy {
+    color : rgb(41, 91, 117);
+    background : rgb(155, 200, 102);
+    border : 1px solid rgb(41, 91, 117);
+    border-radius : 0.2em;
+}
+#hiscore .difficulty .active.normal {
+    color : rgb(41, 91, 117);
+    background : rgb(200, 200, 100);
+    border : 1px solid rgb(41, 91, 117);
+    border-radius : 0.2em;
+}
+#hiscore .difficulty .active.hard {
+    color : rgb(41, 91, 117);
+    background : rgb(200, 127, 129);
+    border : 1px solid rgb(41, 91, 117);
+    border-radius : 0.2em;
+}
 #hiscore ol.score-list {
     font-size : 0.55em;
     width : 75%;

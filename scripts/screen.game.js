@@ -193,7 +193,7 @@ alchemy.screens["game-screen"] = (function() {
         audio.play("gameover");
         display.gameOver(function() {
             setTimeout(function() {
-                alchemy.game.showScreen("hiscore", gameState.score);
+                alchemy.game.showScreen("hiscore", gameState.score, gameState.difficulty);
             }, 1000);
         });
     }

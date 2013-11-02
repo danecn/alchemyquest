@@ -19,7 +19,7 @@ alchemy.board = (function() {
         event = jQueryEvent.originalEvent;
 
         // uncomment to log worker messages
-         console.log("Received: ", event.data);
+//         console.log("Received: ", event.data);
         if(event){
             var message = event.data;
 
@@ -83,7 +83,7 @@ alchemy.board = (function() {
             }
             str += "\r\n";
         }
-        console.log(str);
+//        console.log(str);
     }
 
     return {
