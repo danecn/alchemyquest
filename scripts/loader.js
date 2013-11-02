@@ -12,7 +12,7 @@ var alchemy = {
             baseScore : 100,
             numItemTypes : 7,
             baseTimerBoost: 30,
-            baseLevelTimer : 120000,
+            baseLevelTimer : 90000,
             baseLevelScore : 1500,
             baseLevelExp : 1.05
         },
@@ -20,7 +20,7 @@ var alchemy = {
             baseScore : 100,
             numItemTypes : 8,
             baseTimerBoost: 20,
-            baseLevelTimer : 90000,
+            baseLevelTimer : 60000,
             baseLevelScore : 1500,
             baseLevelExp : 1.075
         },
@@ -28,11 +28,21 @@ var alchemy = {
             baseScore : 100,
             numItemTypes : 9,
             baseTimerBoost: 10,
-            baseLevelTimer : 60000,
+            baseLevelTimer : 40000,
             baseLevelScore : 1500,
             baseLevelExp : 1.1
         },
-        difficulty: 'normal'
+        difficulty: 'normal',
+        controls : {
+            KEY_UP : "moveUp",
+            KEY_LEFT : "moveLeft",
+            KEY_DOWN : "moveDown",
+            KEY_RIGHT : "moveRight",
+            KEY_ENTER : "selectItem",
+            KEY_SPACE : "selectItem",
+            CLICK : "selectItem",
+            TOUCH : "selectItem"
+        }
     },
     images : {}
 };
@@ -59,7 +69,7 @@ window.addEventListener("load", function() {
         numLoaded = 0;
 
     yepnope.addPrefix("loader", function(resource) {
-//         console.log("Loading: " + resource.url)
+        // console.log("Loading: " + resource.url)
 
         var isImage = /.+\.(jpg|png|gif)$/i.test(resource.url);
         resource.noexec = isImage;
@@ -87,8 +97,14 @@ window.addEventListener("load", function() {
 
     Modernizr.load([
         {
+            test : Modernizr.localstorage,
+            yep : "scripts/storage.js",
+            nope : "scripts/storage.cookie.js"
+        },
+        {
             //main files to load
             load : [
+                "scripts/lib/requestAnimationFrame.js",
                 "scripts/game.js"
             ]
         },
@@ -120,6 +136,10 @@ window.addEventListener("load", function() {
         },
         {
             load : [
+                "loader!scripts/audio.js",
+                "loader!scripts/input.js",
+                "loader!scripts/screen.hiscore.js",
+                "loader!scripts/screen.settings.js",
                 "loader!scripts/screen.main-menu.js",
                 "loader!scripts/screen.game.js",
                 "loader!images/sprites/items"
@@ -127,10 +147,5 @@ window.addEventListener("load", function() {
             ]
         }
     ]);
-
-    Modernizr.load([
-
-    ]);
-
 
 }, false);

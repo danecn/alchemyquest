@@ -75,11 +75,53 @@
 
         <!--  GAME SCREEN  -->
         <div class="screen" id="game-screen">
-            <div class="game-board item-size"></div>
+            <div class="game-board item-size">
+                <div class="announcement"></div>
+            </div>
+            <div class="game-info">
+                <label class="level">Level: <span></span></label>
+                <label class="score">Score: <span></span></label>
+                <label class="difficulty"><span></span></label>
+            </div>
+
+            <div class="time progress"><div class="indicator"></div></div>
+
+            <footer>
+                <button name="exit">Exit</button>
+            </footer>
+
+            <div class="pause-overlay"></div>
+            <div class="alert-overlay"></div>
         </div>
 
         <!--  HIGH SCORE SCREEN  -->
-        <div class="screen" id="high-scores"></div>
+        <div class="screen" id="hiscore">
+            <h2 class="logo">High score</h2>
+            <ol class="score-list">
+            </ol>
+            <footer>
+                <button name="back">Back</button>
+            </footer>
+        </div>
+        <!--  SETTINGS SCREEN  -->
+        <div class="screen" id="settings">
+            <h2 class="logo">Settings</h2>
+            <div class="setting" >
+                <ul>
+                    <li>
+                        <label>Sound:</label>
+                        <button name="sound" class='on'>ON</button>
+                    </li>
+                    <li>
+                        <label>Difficulty:</label>
+                        <button name="difficulty" class='normal'>NORMAL</button>
+                    </li>
+                </ul>
+            </div>
+            <footer>
+                <button name="back">Back</button>
+            </footer>
+        </div>
 
         <div id="item-proto" class="item-size"></div>
     </div>
