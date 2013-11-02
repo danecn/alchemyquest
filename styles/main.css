@@ -368,8 +368,11 @@ ul.menu li button:active {
 .screen footer button {
     cursor: pointer;
     margin-left : 0.25em;
-    padding : 0 0.75em;
-    font-size : 0.5em;
+    font-family: "Lithos Regular";
+    margin-left: 0.25em;
+    padding: 0.2em 0.75em 0 0.75em;
+    font-size: 0.4em;
+    height: 1.4em;
 
     color : rgb(200, 200, 100);
     background : rgb(41, 91, 117);
@@ -478,56 +481,51 @@ ul.menu li button:active {
     position: absolute;
     top: 0.5em;
     right: 0;
+
+    font-family: "Lithos Regular";
+    margin-left: 0.25em;
+    padding: 0.2em 0.75em 0 0.75em;;
+    font-size: 0.5em;
+    height: 1.4em;
 }
 #settings .off {
-    margin-left : 0.25em;
-    padding : 0 0.75em;
-    font-size : 0.5em;
-
     color : rgb(200, 200, 100);
     background : rgb(41, 91, 117);
     border : 1px solid rgb(200, 200, 100);
     border-radius : 0.2em;
 }
 #settings .on {
-    margin-left : 0.25em;
-    padding : 0 0.75em;
-    font-size : 0.5em;
-
-    color : rgb(41, 91, 117);
-    background : rgb(200, 200, 100);
-    border : 1px solid rgb(41, 91, 117);
-    border-radius : 0.2em;
+    color: rgb(41, 91, 117);
+    background: rgb(200, 200, 100);
+    border: 1px solid rgb(41, 91, 117);
+    border-radius: 0.2em;
 }
-
 #settings .easy {
-    margin-left : 0.25em;
-    padding : 0 0.75em;
-    font-size : 0.5em;
-
     color : rgb(41, 91, 117);
     background : rgb(155, 200, 102);
     border : 1px solid rgb(41, 91, 117);
     border-radius : 0.2em;
 }
 #settings .normal {
-    margin-left : 0.25em;
-    padding : 0 0.75em;
-    font-size : 0.5em;
-
     color : rgb(41, 91, 117);
     background : rgb(200, 200, 100);
     border : 1px solid rgb(41, 91, 117);
     border-radius : 0.2em;
 }
 #settings .hard {
-    margin-left : 0.25em;
-    padding : 0 0.75em;
-    font-size : 0.5em;
-
     color : rgb(41, 91, 117);
     background : rgb(200, 127, 129);
     border : 1px solid rgb(41, 91, 117);
     border-radius : 0.2em;
 }
 
+/** About */
+#about h2 {
+    margin-top : 0.6em;
+    font-size : 1.2em;
+}
+#about div {
+    font-size: 0.35em;
+    width: 80%;
+    margin: auto;
+}
