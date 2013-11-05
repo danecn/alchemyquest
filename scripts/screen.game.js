@@ -245,12 +245,12 @@ alchemy.screens["game-screen"] = (function() {
     }
 
     function playBoardEvents(events) {
+
         if (events.length > 0) {
             var boardEvent = events.shift(),
                 next = function() {
                     playBoardEvents(events);
                 };
-
             switch (boardEvent.type) {
                 case "move" :
                     display.moveItems(boardEvent.data, next);
@@ -269,6 +269,7 @@ alchemy.screens["game-screen"] = (function() {
                     break;
                 case "badswap" :
                     audio.play("badswap");
+                    display.renderCursor(true);
                     break;
                 default :
                     next();

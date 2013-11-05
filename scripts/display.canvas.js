@@ -355,6 +355,10 @@ alchemy.display = (function() {
     }
 
     function renderCursor(time) {
+        if(typeof time == "boolean"){
+            cursor = oldCursor;
+            time = (new Date()).getTime();
+        }
         if (!cursor) {
             return;
         }
@@ -404,6 +408,7 @@ alchemy.display = (function() {
         removeItems : removeItems,
         refill : refill,
         levelUp : levelUp,
-        gameOver : gameOver
+        gameOver : gameOver,
+        renderCursor: renderCursor
     }
 })();
