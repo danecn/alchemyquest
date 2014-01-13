@@ -28,7 +28,7 @@ alchemy.screens["hiscore"] = (function() {
     }
 
     function enterScore(score, difficulty) {
-        var scores = getScores(),
+        var scores = getScores(difficulty),
             name, i, entry;
         for (i=0;i<=scores.length;i++) {
             if (i == scores.length || score > scores[i].score) {
